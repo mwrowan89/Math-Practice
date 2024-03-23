@@ -24,7 +24,28 @@ let wrongAnswerArr = [
 
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    //Display Nav other options
+    const nav = document.querySelector('nav');
+    nav.addEventListener('click', () => {
+        const option = document.querySelectorAll('.options');
+        option.forEach((option) => {
+            option.style.display = 'block';
+        });
+    });
+
+    const navLeave = document.querySelector('nav');
+    navLeave.addEventListener('dblclick', () => {
+        const option = document.querySelectorAll('.options');
+        option.forEach((option) => {
+            option.style.display = 'none';
+        });
+    });
+
+
+    
 
     showQuestionPrompt();
 
@@ -63,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
         showQuestionPrompt();// Generate a new problem set.
-        clearClasses(); //Removes correct or incorrect class to reset
+        //clearClasses(); //Removes correct or incorrect class to reset
         startOver();// Reset the problem. // Reset the score.
         
         
@@ -127,7 +148,7 @@ function problemCounter(){
 function scoreCounter(){
     let currentScore = document.querySelector('.currentScore');
     let score = parseInt(currentScore.textContent);
-    let newScore = score + 10;
+    let newScore = (score + 10);
     currentScore.textContent = newScore.toString(); 
 }
 

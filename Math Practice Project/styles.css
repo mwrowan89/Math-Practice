@@ -1,6 +1,39 @@
+/* Flex layout */
+
+body
+ {
+  display: flex;
+  flex-direction: column;
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  padding: 20px;
+  font-family: 'Bangers', cursive;
+  cursor: pointer;
+
+}
+
+section .options {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: smaller;
+  display: none;
+}
+/* 
+.options:hover {
+  display: block;
+} */
+
+/* Normal stylings */
 body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(rgb(246, 117, 117), rgb(76, 76, 245), rgb(42, 123, 42));
 }
 header, main, footer {
   width: 800px;
@@ -48,6 +81,7 @@ h1 {
   padding: 20px 30px;
   cursor: pointer;
   background-color: #eeeeee;
+  border-radius: 5px;
 }
 footer {
   margin-top: 50px;
@@ -62,6 +96,8 @@ button {
   border: 0px;
   border-radius: 4px;
   font-size: 20px;
+  cursor: pointer;
+
 }
 .hidden {
   display:none;
