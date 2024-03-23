@@ -11,9 +11,11 @@ let display;
 // questionMap.set()
 // questionMap.set()
 
-let questionArr = ['2 * 6', '4 * 7', '6 * 7', '2 * 5','9 * 7','3 * 6',
+let questionArrMultiplication = ['2 * 6', '4 * 7', '6 * 7', '2 * 5','9 * 7','3 * 6',
                 '7 * 7','1 * 9','4 * 3','5 * 8','4 * 0','9 * 9'];
 
+
+let questionArrAddition = ['5 + 5', '3 + 9', '9 + 7', '3 + 8', '4 + 6', '6 + 9'];
 
 //do not add these #'s to wrong answer list: 12,28,42,10,63,18,49,9,40,0,81
 let wrongAnswerArr = [
@@ -99,7 +101,7 @@ function showQuestionPrompt() {
    
     //Shows the question prompt 
     let newQuestion = document.getElementById('questionPrompt');
-    let randomQuestionPrompt = pickRandomQuestion(questionArr);
+    let randomQuestionPrompt = pickRandomQuestion(questionArrMultiplication);
     newQuestion.textContent = randomQuestionPrompt;
     
 
