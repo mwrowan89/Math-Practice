@@ -31,6 +31,28 @@
             </div>
         </div>
     </div>
-    <button class="start-btn">Start</button>
+    <button id="start-btn">Start</button>
+
+    <script>
+          const startBtn = document.getElementById('start-btn');
+            startBtn.addEventListener('click', () => {
+                let division = document.getElementById('division').checked;
+                let multiplication = document.getElementById('multiplication').checked;
+                let addition = document.getElementById('addition').checked;
+                let subtraction = document.getElementById('subtraction').checked;
+                if(division) {
+                    window.location.href = "division.html";
+                } 
+                else if(multiplication) {
+                    window.location.href = "multiplication.html";
+                }
+                else if(addition) {
+                    window.location.href = "addition.html";
+                }
+                else if(subtraction) {
+                    window.location.href = "subtraction.html";
+                }
+            });
+    </script>
 
 </body>

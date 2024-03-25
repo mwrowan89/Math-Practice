@@ -1,21 +1,17 @@
 let display;
 
-// let questionMap = new Map();
-// questionMap.set('2 * 2', 4);
-// questionMap.set('4 * 4', 16);
-// questionMap.set('6 * 6', 36);
-// questionMap.set('5 * 5', 25);
-// questionMap.set()
-// questionMap.set()
-// questionMap.set()
-// questionMap.set()
-// questionMap.set()
 
-let questionArrMultiplication = ['2 * 6', '4 * 7', '6 * 7', '2 * 5','9 * 7','3 * 6',
+let multiplicationArr = ['2 * 6', '4 * 7', '6 * 7', '2 * 5','9 * 7','3 * 6',
                 '7 * 7','1 * 9','4 * 3','5 * 8','4 * 0','9 * 9'];
 
+let additionArr = ['2 + 6', '4 + 7', '6 + 7', '2 + 5','9 + 7','3 + 6',
+                '7 + 7','1 + 9','4 + 3','5 + 8','4 + 0','9 + 9'];
 
-let questionArrAddition = ['5 + 5', '3 + 9', '9 + 7', '3 + 8', '4 + 6', '6 + 9'];
+let subtractionArr = ['2 - 6', '4 - 7', '6 - 7', '2 - 5','9 - 7','3 - 6',
+                '7 - 7','1 - 9','4 - 3','5 - 8','4 - 0','9 - 9'];
+
+let divisionArr =  ['2 / 6', '4 / 7', '6 / 7', '2 / 5','9 / 7','3 / 6',
+                '7 / 7','1 / 9','4 / 3','5 / 8','4 / 0','9 / 9'];
 
 //do not add these #'s to wrong answer list: 12,28,42,10,63,18,49,9,40,0,81
 let wrongAnswerArr = [
@@ -25,8 +21,10 @@ let wrongAnswerArr = [
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
+
+
+    showPromptBasedOnURL();
 
     //Display Nav other options
     const nav = document.querySelector('nav');
@@ -36,23 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
             option.style.display = 'block';
         });
     });
-
     const navLeave = document.querySelector('nav');
     navLeave.addEventListener('dblclick', () => {
         const option = document.querySelectorAll('.options');
         option.forEach((option) => {
             option.style.display = 'none';
         });
-    });
-
-    const startBtn = document.querySelector('button.start-btn');
-    startBtn.addEventListener('click', () => {
-    window.location.href = "index.html";
-});
-
-    
-
-    showQuestionPrompt();
+    });    
 
     const selection = document.querySelectorAll('li');
     selection.forEach((choice) => {
@@ -62,33 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (choice === correctChoice){
                     scoreCounter();
                 }
-                showQuestionPrompt();// Generate a new problem
+                showPromptBasedOnURL();// Generate a new problem
+                //showDivisionPrompt();
                 problemCounter();// change question count
-                
                 
             });
     })
-    
-
-    // const wrongChoice = document.querySelectorAll('.incorrect');
-    // wrongChoice.forEach((wrongChoice) => {
-    //     wrongChoice.addEventListener('click', () => {
-
-    //             showQuestionPrompt();// Generate a new problem
-    //             problemCounter();// change question count
-                
-                
-    //             // update the score
-
-    //         });
-    // })
     
 
     const btnStartOver = document.getElementById('btnStartOver');
     btnStartOver.addEventListener('click', () => {
         
 
-        showQuestionPrompt();// Generate a new problem set.
+        showPromptBasedOnURL();// Generate a new problem set.
         //clearClasses(); //Removes correct or incorrect class to reset
         startOver();// Reset the problem. // Reset the score.
         
@@ -98,13 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function showPromptBasedOnURL() {
 
-function showQuestionPrompt() {
+    const path = window.location.pathname;
+
+    // Check the path and call the corresponding function
+    if (path.includes("division.html")) {
+        showDivisionPrompt();
+    } else if (path.includes("multiplication.html")) {
+        showMultiplicationPrompt();
+    } else if (path.includes("addition.html")) {
+        showAdditionPrompt();
+    } else if (path.includes("subtraction.html")) {
+        showSubtractionPrompt();
+    } else {
+        // Handle other URLs or no match
+        console.log("No matching URL.");
+    }
+}
+
+
+function showMultiplicationPrompt() {
 
    
     //Shows the question prompt 
-    let newQuestion = document.getElementById('questionPrompt');
-    let randomQuestionPrompt = pickRandomQuestion(questionArrMultiplication);
+    let newQuestion = document.getElementById('multiplicationPrompt');
+    let randomQuestionPrompt = pickRandomQuestion(multiplicationArr);
     newQuestion.textContent = randomQuestionPrompt;
     
 
@@ -115,6 +108,123 @@ function showQuestionPrompt() {
     let secondNum = parseInt(value[2]);
     //result of question prompt
     let result = firstNum * secondNum;
+
+
+    //Ensures the li tag that has correct answer is never in the same spot
+    
+    let list = document.querySelector('#answers ul');
+    let totalElements = list.children.length;
+    let randomLi = Math.floor(Math.random() * totalElements);
+    let correctAnswer = list.children[randomLi];
+
+    correctAnswer.textContent = result;
+    correctAnswer.setAttribute('class', 'correct');
+
+    //Generates 3 wrong answers
+    let wrongAnswers = document.querySelectorAll('li');
+    wrongAnswers.forEach((answer) => {
+        if (!answer.classList.contains('correct') || answer.textContent !== correctAnswer.textContent) {
+            answer.setAttribute('class', 'incorrect');
+            answer.textContent = pickRandomNumber(wrongAnswerArr);
+        }
+    });
+
+};
+
+function showDivisionPrompt() {
+
+   
+    //Shows the question prompt 
+    let newQuestion = document.getElementById('divisionPrompt');
+    let randomQuestionPrompt = pickRandomQuestion(divisionArr);
+    newQuestion.textContent = randomQuestionPrompt;
+    
+
+    //Takes the random question and evaluates the question for value.
+    let value = randomQuestionPrompt.split(" ");
+    let firstNum = parseInt(value[0]);
+    let operator = value[1];
+    let secondNum = parseInt(value[2]);
+    //result of question prompt
+    let result = firstNum / secondNum;
+
+
+    //Ensures the li tag that has correct answer is never in the same spot
+    
+    let list = document.querySelector('#answers ul');
+    let totalElements = list.children.length;
+    let randomLi = Math.floor(Math.random() * totalElements);
+    let correctAnswer = list.children[randomLi];
+
+    correctAnswer.textContent = result;
+    correctAnswer.setAttribute('class', 'correct');
+
+    //Generates 3 wrong answers
+    let wrongAnswers = document.querySelectorAll('li');
+    wrongAnswers.forEach((answer) => {
+        if (!answer.classList.contains('correct') || answer.textContent !== correctAnswer.textContent) {
+            answer.setAttribute('class', 'incorrect');
+            answer.textContent = pickRandomNumber(wrongAnswerArr);
+        }
+    });
+
+};
+
+function showAdditionPrompt() {
+
+   
+    //Shows the question prompt 
+    let newQuestion = document.getElementById('additionPrompt');
+    let randomQuestionPrompt = pickRandomQuestion(additionArr);
+    newQuestion.textContent = randomQuestionPrompt;
+    
+
+    //Takes the random question and evaluates the question for value.
+    let value = randomQuestionPrompt.split(" ");
+    let firstNum = parseInt(value[0]);
+    let operator = value[1];
+    let secondNum = parseInt(value[2]);
+    //result of question prompt
+    let result = firstNum + secondNum;
+
+
+    //Ensures the li tag that has correct answer is never in the same spot
+    
+    let list = document.querySelector('#answers ul');
+    let totalElements = list.children.length;
+    let randomLi = Math.floor(Math.random() * totalElements);
+    let correctAnswer = list.children[randomLi];
+
+    correctAnswer.textContent = result;
+    correctAnswer.setAttribute('class', 'correct');
+
+    //Generates 3 wrong answers
+    let wrongAnswers = document.querySelectorAll('li');
+    wrongAnswers.forEach((answer) => {
+        if (!answer.classList.contains('correct') || answer.textContent !== correctAnswer.textContent) {
+            answer.setAttribute('class', 'incorrect');
+            answer.textContent = pickRandomNumber(wrongAnswerArr);
+        }
+    });
+
+};
+
+function showSubtractionPrompt() {
+
+   
+    //Shows the question prompt 
+    let newQuestion = document.getElementById('subtractionPrompt');
+    let randomQuestionPrompt = pickRandomQuestion(subtractionArr);
+    newQuestion.textContent = randomQuestionPrompt;
+    
+
+    //Takes the random question and evaluates the question for value.
+    let value = randomQuestionPrompt.split(" ");
+    let firstNum = parseInt(value[0]);
+    let operator = value[1];
+    let secondNum = parseInt(value[2]);
+    //result of question prompt
+    let result = firstNum - secondNum;
 
 
     //Ensures the li tag that has correct answer is never in the same spot

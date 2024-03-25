@@ -69,7 +69,10 @@ h1 {
   font-size: 30px;
 } */
 
-#questionPrompt{
+#multiplicationPrompt,
+#subtractionPrompt,
+#additionPrompt,
+#divisionPrompt {
   font-size: 48px;
   border: 1px solid #eeeeee;
   padding: 10px;
@@ -117,6 +120,9 @@ button {
 }
 
 
+
+/* Menu page */
+
 #operators{
   width: 800px;
   margin: 0 auto;
@@ -127,13 +133,19 @@ button {
   font: 20px;
   color: gray;
 }
-form{
+
+p {
+  font-size: 1.5rem;
+}
+
+form {
   color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   gap: 10px;
+  font-size: 2rem;
 }
 .select-operation p{
   color: black;
