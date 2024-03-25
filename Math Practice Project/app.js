@@ -26,7 +26,6 @@ let wrongAnswerArr = [
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
 
     //Display Nav other options
@@ -46,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const startBtn = document.querySelector('button.start-btn');
+    startBtn.addEventListener('click', () => {
+    window.location.href = "index.html";
+});
 
     
 

@@ -46,7 +46,7 @@ section .options {
 body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: linear-gradient(rgb(246, 117, 117), rgb(76, 76, 245), rgb(42, 123, 42));
+  background-image: linear-gradient(rgb(252, 71, 71), rgb(76, 76, 245), rgb(42, 123, 42));
 }
 header, main, footer {
   width: 100vh;
@@ -104,7 +104,7 @@ button {
   display: block;
   margin: 40px auto;
   padding: 8px 12px;
-  background-color: #ABD587;
+  background-color: #3f8502;
   text-transform: uppercase;
   border: 0px;
   border-radius: 4px;
@@ -114,4 +114,36 @@ button {
 }
 .hidden {
   display:none;
+}
+
+
+#operators{
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.select-operation{
+  display: flex;
+  font: 20px;
+  color: gray;
+}
+form{
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+.select-operation p{
+  color: black;
+}
+
+h1, p{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+.start-btn{
+  color:rgb(207, 219, 207)
 }
