@@ -84,6 +84,10 @@ h1 {
 
 } */
 
+.controls input[type="radio"] {
+  transform: scale(2);
+}
+
 #answers ul {
   margin: 0;
   padding: 0;

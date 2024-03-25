@@ -7,8 +7,8 @@ let multiplicationArr = ['2 * 6', '4 * 7', '6 * 7', '2 * 5','9 * 7','3 * 6',
 let additionArr = ['2 + 6', '4 + 7', '6 + 7', '2 + 5','9 + 7','3 + 6',
                 '7 + 7','1 + 9','4 + 3','5 + 8','4 + 0','9 + 9'];
 
-let subtractionArr = ['2 - 6', '4 - 7', '6 - 7', '2 - 5','9 - 7','3 - 6',
-                '7 - 7','1 - 9','4 - 3','5 - 8','4 - 0','9 - 9'];
+let subtractionArr = ['6 - 2', '7 - 4', '6 - 7', '5 - 2','9 - 7','6 - 3',
+                '7 - 7','9 - 2','4 - 3','8 - 5','4 - 4','9 - 6'];
 
 let divisionArr =  ['2 / 6', '4 / 7', '6 / 7', '2 / 5','9 / 7','3 / 6',
                 '7 / 7','1 / 9','4 / 3','5 / 8','4 / 0','9 / 9'];
@@ -16,7 +16,9 @@ let divisionArr =  ['2 / 6', '4 / 7', '6 / 7', '2 / 5','9 / 7','3 / 6',
 //do not add these #'s to wrong answer list: 12,28,42,10,63,18,49,9,40,0,81
 let wrongAnswerArr = [
     13,45,22,41,55,20,26,24,32,11,
-    19,43,76,86,71,53,48,53,26,77,14,80,7,46
+    19,43,76,86,71,53,48,53,26,77,14,80,7,46,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+    39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51
 ]
 
 
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     scoreCounter();
                 }
                 showPromptBasedOnURL();// Generate a new problem
-                //showDivisionPrompt();
+    
                 problemCounter();// change question count
                 
             });
@@ -62,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btnStartOver.addEventListener('click', () => {
         
 
-        showPromptBasedOnURL();// Generate a new problem set.
-        //clearClasses(); //Removes correct or incorrect class to reset
+        window.location.href = 'index.html';
+        
         startOver();// Reset the problem. // Reset the score.
         
         
@@ -147,6 +149,7 @@ function showDivisionPrompt() {
     let secondNum = parseInt(value[2]);
     //result of question prompt
     let result = firstNum / secondNum;
+    let roundedResult = result.toFixed(2);
 
 
     //Ensures the li tag that has correct answer is never in the same spot
@@ -156,7 +159,7 @@ function showDivisionPrompt() {
     let randomLi = Math.floor(Math.random() * totalElements);
     let correctAnswer = list.children[randomLi];
 
-    correctAnswer.textContent = result;
+    correctAnswer.textContent = roundedResult;
     correctAnswer.setAttribute('class', 'correct');
 
     //Generates 3 wrong answers

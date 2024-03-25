@@ -3,50 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multiplication Practice</title>
+  <title>Math Practice Menu</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-
 </head>
-<body id="background">
+<body>
+<!--Temporary File, will merge later-->
 
-  <section class="navMenu">
-    <nav class="nav">More Math Practice</nav>
-      <p class="options" id="addition"><a href="addition.html">Addition</a></p>
-      <p class="options" id="subtraction"><a href="subtraction.html">Subtraction</a></p>
-      <p class="options" id="multiplication"><a href="multiplication.html">Multiplication</a></p>
-      <p class="options" id="division"><a href="division.html">Division</a></p>
-  </section>
+    <div class="operators">
+        <div id = "select-operation" class = "hide">
+        <h1>Math Practice</h1>
+            <p>Please choose the math operator you would like to practice and click start</p>
+            <div class="controls">
+                <form>
+                <input type="radio" id="addition" name="selection">
+                <label for="addition">Addition</label><br>
 
-  <header>
-    <h1>Multiplication Practice</h1>
-    <p class="show-hide">Please select an answer below the problem by clicking on the box</p>
-    
-  </header>
+                <input type="radio" id="subtraction" name="selection">
+                <label for="subtraction">Subtraction</label><br>
 
-  <main>
-    <section id="problem">
-      
-      <p class="show-hide" id="questionPrompt"></p>
-      <p>
-        Problem: <span class="currentProblem">1</span>/10 | Score: <span class="currentScore">0</span>
-      </p>
-    </section>
-    <section id="answers" class="show-hide">
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </section>
-    <button id="btnStartOver">Start Over</button>
-  </main>
-  <footer>
-    Copyright &copy; 2020 LearnIT. All Rights Reserved.
-  </footer>
+                <input type="radio" id="multiplication" name="selection">
+                <label for="multiplication">Multiplication</label><br>
 
-  <script src="app.js"></script>
+                <input type="radio" id="division" name="selection">
+                <label for="division">Division</label><br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button id="start-btn">Start</button>
+
+    <script>
+          const startBtn = document.getElementById('start-btn');
+            startBtn.addEventListener('click', () => {
+                let division = document.getElementById('division').checked;
+                let multiplication = document.getElementById('multiplication').checked;
+                let addition = document.getElementById('addition').checked;
+                let subtraction = document.getElementById('subtraction').checked;
+                if(division) {
+                    window.location.href = "division.html";
+                } 
+                else if(multiplication) {
+                    window.location.href = "multiplication.html";
+                }
+                else if(addition) {
+                    window.location.href = "addition.html";
+                }
+                else if(subtraction) {
+                    window.location.href = "subtraction.html";
+                }
+            });
+    </script>
 
 </body>
-</html>
