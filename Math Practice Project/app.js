@@ -260,6 +260,7 @@ function problemCounter(){
     }
     else if (value === 10) {
         showHide();
+        alert('Congratulations')
     }
 }
 
