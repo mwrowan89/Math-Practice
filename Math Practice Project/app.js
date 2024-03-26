@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.location.href = 'index.html';
         
-        startOver();// Reset the problem. // Reset the score.
+        //startOver();// Reset the problem. // Reset the score.
         
         
         
