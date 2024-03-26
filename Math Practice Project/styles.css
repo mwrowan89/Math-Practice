@@ -112,6 +112,7 @@ button {
   margin: 40px auto;
   padding: 8px 12px;
   background-color: #3f8502;
+  color: white;
   text-transform: uppercase;
   border: 0px;
   border-radius: 4px;
@@ -136,6 +137,11 @@ button {
   display: flex;
   font: 20px;
   color: gray;
+}
+
+#start-btn {
+  font-size: 40px;
+  color: white;
 }
 
 p {
